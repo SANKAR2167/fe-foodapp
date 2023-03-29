@@ -94,7 +94,7 @@ function App() {
 
   const [foodData, setFoodData] = useState([]);
 
-  console.log(foodData);
+  // console.log(foodData);
   const navigate = useNavigate();
 
   useEffect(() => {

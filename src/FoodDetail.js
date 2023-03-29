@@ -7,7 +7,7 @@ export function FoodDetail({ foodData }) {
   const { id } = useParams();
 
   const food = foodData[id];
-  console.log(food);
+  // console.log(food);
 
 
   const styles = {
