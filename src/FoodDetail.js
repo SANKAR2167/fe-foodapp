@@ -1,32 +1,31 @@
-import { useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
+import { Button } from '@mui/material';
+import { useNavigate, useParams } from 'react-router-dom';
+import KeyboardBackspaceIcon from '@mui/icons-material/KeyboardBackspace';
 
-export function FoodDetail() {
+export function FoodDetail({ foodData }) {
 
   const { id } = useParams();
-  //const food = foodData[id];
-  const [foods, setFoodData] = useState([]);
 
-  useEffect(() => {
-    fetch(`https://638af1ba7220b45d22850b2c.mockapi.io/foods/${id}`)
-      .then((data) => data.json())
-      .then((foods) => setFoodData(foods));
-  }, []);
+  const food = foodData[id];
+  console.log(food);
 
-console.log(foods.name);
+
   const styles = {
-    color: foods.rating >= 8.5 ? 'green' : 'red',
+    color: food.rating >= 8.5 ? 'green' : 'red',
   };
 
-  // const navigate = useNavigate();
-  // <Button variant='contained' className='back-btn' onClick={() => navigate(-1)}><KeyboardBackspaceIcon />  Back</Button>
+  const navigate = useNavigate();
   return (
-    <div className="food-detail">
-      <div className="food-img">
-        <img src={foods.image} alt="" />
-      </div>
-      <div className="food-info">
-        <h1>content</h1>
+    <div className="detail">
+      <div className="food-detail">
+        <div className="detail-img">
+          <img src={food.image} alt={food.name} />
+        </div>
+        <div className="detail-content">
+          <h3 className='name'>{food.name} <span className="food-rating" style={styles}>⭐️{food.rating}</span></h3>
+          <p>{food.description}</p>
+          <Button variant='contained' onClick={() => navigate(-1)}><KeyboardBackspaceIcon />  Back</Button>
+        </div>
       </div>
     </div>
   );
